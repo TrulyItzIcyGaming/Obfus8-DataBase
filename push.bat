@@ -14,6 +14,14 @@ if %errorlevel% neq 0 (
     echo Repository initialized and remote set to %remoteUrl%.
 )
 
+REM Check if the current branch is 'main', and rename if necessary
+git branch --show-current > branch_name.txt
+set /p currentBranch=<branch_name.txt
+del branch_name.txt
+if /i not "%currentBranch%"=="main" (
+    git branch -M main
+)
+
 REM Add all changes to the staging area
 git add .
 
