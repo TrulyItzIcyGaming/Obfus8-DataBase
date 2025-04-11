@@ -4,16 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obfus8's DataBase</title>
-
-    <!-- Favicon Links -->
-    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="192x192" href="/favicon/android-chrome-192x192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="/favicon/android-chrome-512x512.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Sidebar styles */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #111;
+            color: #0f0; /* Green text for tech theme */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        #sidebar.open {
+            transform: translateX(0);
+        }
+
+        #sidebar h2 {
+            margin-top: 50px; /* Add space to avoid overlap with the button */
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            margin: 10px 0;
+        }
+
+        #sidebar ul li a {
+            color: #0f0; /* Green text for links */
+            text-decoration: none;
+        }
+
+        #sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        #sidebar-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #111;
+            color: #0f0; /* Green text for tech theme */
+            border: 1px solid #0f0;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: opacity 0.3s ease;
+        }
+
+        #sidebar-toggle:hover {
+            background-color: #333;
+        }
+
+        #sidebar.open ~ #sidebar-toggle {
+            opacity: 0; /* Hide the button when sidebar is open */
+            pointer-events: none; /* Disable interaction */
+        }
+
+        /* Ensure content is not covered by the button */
+        .container {
+            margin-top: 60px; /* Add space below the button */
+        }
+    </style>
 </head>
 <body class="crt">
+    <button id="sidebar-toggle">☰</button>
+    <div id="sidebar">
+        <h2>Future Plans & Projects</h2>
+        <button id="future-plans-button" onclick="location.href='future-plans.html'">Future Plans Checklist</button>
+    </div>
+
     <div class="container">
         <div class="page-header">
             <h1>Obfus8's Database</h1>
@@ -74,6 +144,15 @@
         <p>Stay ethical and responsible. Cybersecurity should be used to <strong>protect</strong>, not exploit.</p>
     </div>
 
+    <script>
+        // Sidebar toggle functionality
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

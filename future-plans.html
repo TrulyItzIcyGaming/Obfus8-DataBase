@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Terminal</title>
+    <style>
+        body {
+            background-color: #000; /* Black background for terminal look */
+            color: #0f0; /* Green text for terminal theme */
+            font-family: "Courier New", Courier, monospace; /* Monospace font */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .terminal-container {
+            width: 100%;
+            max-width: 800px;
+            border: 2px solid #0f0;
+            background-color: #111;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .terminal {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #0f0;
+            background-color: #000;
+        }
+
+        .command-line {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .prompt {
+            margin-right: 10px;
+        }
+
+        .input {
+            background: none;
+            border: none;
+            color: #0f0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16px;
+            outline: none;
+            width: 100%;
+        }
+
+        .output {
+            white-space: pre-wrap;
+        }
+
+        .error {
+            color: #f00; /* Red for errors */
+        }
+
+        .success {
+            color: #0f0; /* Green for success */
+        }
+
+        .blinking-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #0f0;
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="futurePlansContainer" class="terminal-container">
+            <h2>Future Plans</h2>
+            <ul id="futurePlansList"></ul>
+            <p>Press <strong>x</strong> to open the interactive terminal.</p>
+        </div>
+
+        <div id="interactiveContainer" class="terminal-container" style="display: none;">
+            <h2>Interactive Terminal</h2>
+            <div id="terminal" class="terminal"></div>
+            <div class="command-line">
+                <span class="prompt">$</span>
+                <input id="commandInput" class="input" type="text" autofocus />
+                <span class="blinking-cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

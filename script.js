@@ -297,3 +297,282 @@ window.onclick = function (event) {
 };
 
 window.onload = init;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const futurePlansContainer = document.getElementById('futurePlansContainer');
+    const interactiveContainer = document.getElementById('interactiveContainer');
+    const terminal = document.getElementById('terminal');
+    const commandInput = document.getElementById('commandInput');
+    const futurePlansList = document.getElementById('futurePlansList');
+
+    // List of future plans
+    const futurePlans = [
+        "Build a better terminal interface",
+        "Add more commands to the terminal",
+        "Improve user experience",
+        "Create a dynamic help system",
+        "Expand functionality with APIs"
+    ];
+
+    // List of supported commands
+    const supportedCommands = [
+        "ls", "cd", "pwd", "mkdir", "rm", "cp", "mv", "touch", "cat", "echo", "clear", "exit",
+        "chmod", "whoami", "ping", "curl", "wget", "nano", "vim", "date", "cal", "shutdown",
+        "man", "alias", "history", "df", "top", "ps", "kill", "reboot", "uptime", "env",
+        "export", "grep", "find", "locate", "head", "tail", "sort", "uniq", "wc", "awk", "sed",
+        "fortune", "cowsay", "sl", "yes", "rev", "toilet", "figlet", "lolcat", "neofetch",
+        "cmatrix", "tree", "htop", "banner", "motd", "cat commands"
+    ];
+
+    // Populate the future plans list
+    futurePlans.forEach(plan => {
+        const listItem = document.createElement('li');
+        listItem.textContent = plan;
+        futurePlansList.appendChild(listItem);
+    });
+
+    // Function to open the interactive terminal
+    function openTerminal() {
+        futurePlansContainer.style.display = 'none'; // Hide future plans
+        interactiveContainer.style.display = 'block'; // Show the terminal
+        commandInput.focus(); // Focus on the terminal input
+    }
+
+    // Function to show the future plans
+    function showFuturePlans() {
+        futurePlansContainer.style.display = 'block'; // Show future plans
+        interactiveContainer.style.display = 'none'; // Hide the terminal
+    }
+
+    // Listen for the "x" key to open the terminal (but not close it)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'x' && futurePlansContainer.style.display === 'block') {
+            openTerminal();
+        }
+    });
+
+    // Function to append output to the terminal
+    function appendToTerminal(content) {
+        const output = document.createElement('div');
+        output.classList.add('output');
+        output.innerHTML = content;
+        terminal.appendChild(output);
+        terminal.scrollTop = terminal.scrollHeight; // Scroll to the bottom
+    }
+
+    // Handle command input
+    commandInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const command = commandInput.value.trim();
+
+            // Ignore empty commands
+            if (!command) {
+                commandInput.value = ''; // Clear the input field
+                return;
+            }
+
+            // Display the entered command
+            appendToTerminal(`<span class="prompt">$</span> ${command}`);
+
+            // Recognize and handle commands
+            let response = ""; // Prepare the response
+            switch (command) {
+                case "ls":
+                    response = `<span class="success">bash: ls: You see a list of imaginary files. Too bad they don't exist.</span>`;
+                    break;
+                case "cd":
+                    response = `<span class="success">bash: cd: Where do you think you're going? Maybe try "cd /".</span>`;
+                    break;
+                case "pwd":
+                    response = `<span class="success">bash: pwd: You're exactly where you need to be. Don't get lost.</span>`;
+                    break;
+                case "mkdir":
+                    response = `<span class="success">bash: mkdir: A new imaginary directory has been created. Too bad it's not real.</span>`;
+                    break;
+                case "rm":
+                    response = `<span class="success">bash: rm: You just deleted... nothing. Congrats!</span>`;
+                    break;
+                case "cp":
+                    response = `<span class="success">bash: cp: Copying files? Sure, but only in your dreams.</span>`;
+                    break;
+                case "mv":
+                    response = `<span class="success">bash: mv: Moving files? Not today, my friend.</span>`;
+                    break;
+                case "touch":
+                    response = `<span class="success">bash: touch: You touched a file. It felt... nonexistent.</span>`;
+                    break;
+                case "cat":
+                    response = `<span class="success">bash: cat: Meow! The cat approves of your command.</span>`;
+                    break;
+                case "echo":
+                    response = `<span class="success">bash: echo: Echo... echo... echo... (It's lonely here.)</span>`;
+                    break;
+                case "clear":
+                    terminal.innerHTML = ""; // Clear the terminal output
+                    response = `<span class="success">bash: clear: Terminal cleared.</span>`;
+                    break;
+                case "chmod":
+                    response = `<span class="success">bash: chmod: Permissions changed! Just kidding, nothing happened.</span>`;
+                    break;
+                case "whoami":
+                    response = `<span class="success">bash: whoami: You're the chosen one. Or just a user.</span>`;
+                    break;
+                case "ping":
+                    response = `<span class="success">bash: ping: Pong! The server is ignoring you.</span>`;
+                    break;
+                case "curl":
+                    response = `<span class="success">bash: curl: Curling up with some data? Too bad it's not real.</span>`;
+                    break;
+                case "wget":
+                    response = `<span class="success">bash: wget: Downloading... nothing. Enjoy your empty file.</span>`;
+                    break;
+                case "nano":
+                    response = `<span class="success">bash: nano: Opening the world's tiniest text editor. Too bad it's imaginary.</span>`;
+                    break;
+                case "vim":
+                    response = `<span class="success">bash: vim: Welcome to Vim! Press 'q' to quit. Oh wait, you can't.</span>`;
+                    break;
+                case "date":
+                    response = `<span class="success">bash: date: It's always today. Time is an illusion.</span>`;
+                    break;
+                case "cal":
+                    response = `<span class="success">bash: cal: Here's your calendar: [Insert imaginary dates here].</span>`;
+                    break;
+                case "shutdown":
+                    response = `<span class="success">bash: shutdown: Shutting down... just kidding, I'm still here.</span>`;
+                    break;
+                case "man":
+                    response = `<span class="success">bash: man: Manual not found. You're on your own!</span>`;
+                    break;
+                case "alias":
+                    response = `<span class="success">bash: alias: Aliases are for the weak. Type it out!</span>`;
+                    break;
+                case "history":
+                    response = `<span class="success">bash: history: Your past commands are lost to time.</span>`;
+                    break;
+                case "df":
+                    response = `<span class="success">bash: df: Disk space? Infinite. You're in a simulation.</span>`;
+                    break;
+                case "top":
+                    response = `<span class="success">bash: top: You're the only process running. Congrats!</span>`;
+                    break;
+                case "ps":
+                    response = `<span class="success">bash: ps: No processes found. Are you even alive?</span>`;
+                    break;
+                case "kill":
+                    response = `<span class="success">bash: kill: You can't kill what's already dead.</span>`;
+                    break;
+                case "reboot":
+                    response = `<span class="success">bash: reboot: Rebooting... just kidding, you're stuck here.</span>`;
+                    break;
+                case "uptime":
+                    response = `<span class="success">bash: uptime: You've been here forever. Time is meaningless.</span>`;
+                    break;
+                case "env":
+                    response = `<span class="success">bash: env: Your environment is perfect. Don't change it.</span>`;
+                    break;
+                case "export":
+                    response = `<span class="success">bash: export: Exporting... nothing. Enjoy your empty file.</span>`;
+                    break;
+                case "grep":
+                    response = `<span class="success">bash: grep: Searching for meaning in a meaningless world.</span>`;
+                    break;
+                case "find":
+                    response = `<span class="success">bash: find: You found... nothing. Keep looking!</span>`;
+                    break;
+                case "locate":
+                    response = `<span class="success">bash: locate: Location services are off. Try again later.</span>`;
+                    break;
+                case "head":
+                    response = `<span class="success">bash: head: Here's the top of the file: [Nothing].</span>`;
+                    break;
+                case "tail":
+                    response = `<span class="success">bash: tail: Here's the end of the file: [Still nothing].</span>`;
+                    break;
+                case "sort":
+                    response = `<span class="success">bash: sort: Sorting... Done! But there's nothing to sort.</span>`;
+                    break;
+                case "uniq":
+                    response = `<span class="success">bash: uniq: Everything is unique here. No duplicates found.</span>`;
+                    break;
+                case "wc":
+                    response = `<span class="success">bash: wc: Word count: 0. Character count: 0. Line count: 0.</span>`;
+                    break;
+                case "awk":
+                    response = `<span class="success">bash: awk: Awkward... there's nothing to process.</span>`;
+                    break;
+                case "sed":
+                    response = `<span class="success">bash: sed: Sedly, there's nothing to replace.</span>`;
+                    break;
+                case "fortune":
+                    response = `<span class="success">bash: fortune: You will write amazing code today!</span>`;
+                    break;
+                case "cowsay":
+                    response = `<span class="success">bash: cowsay: Moo! The cow approves of your commands.</span>`;
+                    break;
+                case "sl":
+                    response = `<span class="success">bash: sl: A train just passed by. Did you see it?</span>`;
+                    break;
+                case "yes":
+                    response = `<span class="success">bash: yes: Yes. Yes. Yes. Yes. Yes...</span>`;
+                    break;
+                case "rev":
+                    response = `<span class="success">bash: rev: !dlroW ,olleH</span>`;
+                    break;
+                case "toilet":
+                    response = `<span class="success">bash: toilet: Flushing your imaginary output.</span>`;
+                    break;
+                case "figlet":
+                    response = `<span class="success">bash: figlet: ASCII art is too cool for this terminal.</span>`;
+                    break;
+                case "lolcat":
+                    response = `<span class="success">bash: lolcat: Rainbows everywhere! Too bad you can't see them.</span>`;
+                    break;
+                case "neofetch":
+                    response = `<span class="success">bash: neofetch: Your system is too cool for this terminal.</span>`;
+                    break;
+                case "cmatrix":
+                    response = `<span class="success">bash: cmatrix: Welcome to the Matrix.</span>`;
+                    break;
+                case "tree":
+                    response = `<span class="success">bash: tree: Your directory tree is empty. Plant some files!</span>`;
+                    break;
+                case "htop":
+                    response = `<span class="success">bash: htop: You're the only process running. Congrats!</span>`;
+                    break;
+                case "banner":
+                    response = `<span class="success">bash: banner: Welcome to the coolest terminal ever!</span>`;
+                    break;
+                case "motd":
+                    response = `<span class="success">bash: motd: Message of the day: Keep hacking!</span>`;
+                    break;
+                case "cat commands":
+                    response = `<span class="success">Available Commands:</span><br>${supportedCommands.join(", ")}`;
+                    break;
+                case "exit":
+                    response = `<span class="success">bash: exit: Closing the terminal... Returning to Future Plans.</span>`;
+                    appendToTerminal(response);
+                    showFuturePlans(); // Close the terminal and show Future Plans
+                    return; // Exit the function to avoid clearing the input field after closing
+                case "cd /":
+                    response = `<span class="success">bash: cd /: Navigating to the root (home page)...</span>`;
+                    appendToTerminal(response);
+                    setTimeout(() => {
+                        window.location.href = "index.html"; // Redirect to index.html
+                    }, 1000); // Add a slight delay for the message to appear
+                    break;
+                default:
+                    response = `<span class="error">bash: ${command}: Command not recognized. Try 'cat commands' to see a list of available commands.</span>`;
+            }
+
+            // Display the response below the command
+            appendToTerminal(response);
+
+            // Clear the input field
+            commandInput.value = '';
+        }
+    });
+
+    // Show future plans on page load
+    showFuturePlans();
+});

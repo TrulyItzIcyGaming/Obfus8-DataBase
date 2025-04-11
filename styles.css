@@ -5,11 +5,11 @@
 }
 
 body {
-    background-color: var(--retro-bg);
-    color: var(--retro-green);
-    font-family: 'Courier New', monospace;
-    margin: 0;
+    background-color: #000; /* Black background for terminal look */
+    color: #0f0; /* Green text for tech theme */
+    font-family: "Courier New", Courier, monospace; /* Monospace font for command-line look */
     padding: 20px;
+    margin: 0;
     position: relative;
 }
 
@@ -196,4 +196,54 @@ body {
 
 .legal-disclaimer a:hover {
     color: #ff0000;
+}
+
+.terminals {
+    display: flex;
+    gap: 20px; /* Space between the terminals */
+}
+
+.terminal {
+    width: 48%; /* Each terminal takes up half the width */
+    height: 80vh;
+    border: 1px solid #0f0;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.interactive {
+    background-color: #111; /* Slightly darker background for the interactive terminal */
+}
+
+.non-interactive {
+    background-color: #222; /* Slightly lighter background for the non-interactive terminal */
+}
+
+.command-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.prompt {
+    margin-right: 10px;
+}
+
+.input {
+    background: none;
+    border: none;
+    color: #0f0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+}
+
+.output {
+    margin-left: 20px;
+    white-space: pre-wrap;
+}
+
+.error {
+    color: #f00; /* Red for errors */
 }
