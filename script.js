@@ -307,11 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // List of future plans
     const futurePlans = [
-        "Build a better terminal interface",
-        "Add more commands to the terminal",
-        "Improve user experience",
-        "Create a dynamic help system",
-        "Expand functionality with APIs"
+        "Search Bar",
+        "Youtube Channel",
+        "Chat Application",
     ];
 
     // List of supported commands
