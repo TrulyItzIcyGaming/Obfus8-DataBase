@@ -10,6 +10,7 @@ const categories = [
                     { name: "Discord Grabify", url: "https://github.com/TrulyItzIcyGaming/imageGrabify" },
                     { name: "UwUntended Consequences", url: "https://github.com/TrulyItzIcyGaming/UwUntended-Consequences" },
                     { name: "LockByte", url: "https://github.com/TrulyItzIcyGaming/LockByte" },
+                    { name: "VisualVomit.exe", url: "https://github.com/TrulyItzIcyGaming/VisualVomit.exe" },
                 ]
             },
             {
